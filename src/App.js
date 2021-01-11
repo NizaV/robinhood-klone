@@ -1,6 +1,8 @@
 import './css/App.css';
 import Header from './Header';
-import Body from './Body'
+import Newsfeed from './Newsfeed';
+import Stats from './Stats';
+
 function App() {
   return (
     <div className="App">
@@ -8,11 +10,14 @@ function App() {
         <Header />
 
       </div>
-      <div className="app_body">
+      <div className="app__body">
         <div className="app__container">
-        <Body />
+        <Newsfeed />
+        {/* stats */}
+        <Stats />
         </div>
       </div>
+      {/* Body */}
     </div>
   );
 }

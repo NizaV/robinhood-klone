@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Body() {
+function LineGraph() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function Body() {
     )
 }
 
-export default Body
+export default LineGraph
