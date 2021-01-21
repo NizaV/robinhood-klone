@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './css/Stats.css'
 
 function Stats() {
+
+    const [ stockData, setStockData ] = useState([]);
+
+    useEffect(() => {
+        
+    }, [])
+
     return (
         <div className="stats">
             <div className="stats__container">
