@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './css/Stats.css'
 import axios from "axios";
 import StatsRow from './StatsRow'
+import { db } from './firebase'
 
 const TOKEN = "c0dm82n48v6sgrj3a0cg";
 const BASE_URL = "https://finnhub.io/api/v1/quote";
@@ -11,6 +12,30 @@ const testData = [];
 function Stats() {
 
     const [ stockData, setStockData ] = useState([]);
+    const [ myStocks, setMyStocks ] = useState([]);
+
+    const getMyStocks = () => {
+        db
+        .collection('myStocks')
+        .onSnapshot(snapshot => {
+            let promises = [];
+            let tempData = [];
+            snapshot.docs.map((doc) => {
+              promises.push(getStockData(doc.data().ticker)
+              .then(res => {
+                tempData.push({
+                  id: doc.id,
+                  data: doc.data(),
+                  info: res.data
+                })
+              })
+            )})
+            Promise.all(promises).then(()=>{
+              setMyStocks(tempData);
+            })
+        })
+        console.log(myStocks);
+      }
 
     const getStockData = (stock) => {
         return axios
@@ -23,6 +48,7 @@ function Stats() {
     useEffect(() => {
         const stockslist = ["AAPL", "MSFT", "TSLA", "FB", "BABA", "UBER", "DIS", "SBUX"];
         
+        getMyStocks();
         let promises = [];
         stockslist.map((stock) => {
             promises.push(
@@ -42,8 +68,7 @@ function Stats() {
         })
     }, [])
 
-    console.log(stockData);
-    console.log(testData);
+    
 
     return (
         <div className="stats">
@@ -53,7 +78,7 @@ function Stats() {
                 </div>
                 <div className="stats__content">
                     <div className="stats_rows">
-                        {/* {stockData.map((stock) => (
+                        {myStocks.map((stock) => (
                             <StatsRow
                                 key={stock.data.ticker}
                                 name={stock.data.ticker}
@@ -61,7 +86,7 @@ function Stats() {
                                 volume={stock.data.share}
                                 price={stock.info.c}
                             />
-                        ))} */}
+                        ))}
                     </div>
                 </div>
                 <div className="stats__header">
