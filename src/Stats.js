@@ -83,7 +83,7 @@ function Stats() {
                                 key={stock.data.ticker}
                                 name={stock.data.ticker}
                                 openPrice={stock.info.o}
-                                volume={stock.data.share}
+                                volume={stock.data.shares}
                                 price={stock.info.c}
                             />
                         ))}

@@ -34,6 +34,10 @@
   padding-bottom: 4px;
 }
 
-.row__percentage {
+.row__percentage-positive {
   color: #5ac53b;
+}
+
+.row__percentage-negative {
+  color: red !important;
 }
