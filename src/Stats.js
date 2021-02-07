@@ -6,6 +6,8 @@ import StatsRow from './StatsRow'
 const TOKEN = "c0dm82n48v6sgrj3a0cg";
 const BASE_URL = "https://finnhub.io/api/v1/quote";
 
+const testData = [];
+
 function Stats() {
 
     const [ stockData, setStockData ] = useState([]);
@@ -19,8 +21,8 @@ function Stats() {
     };
 
     useEffect(() => {
-        let testData = []
         const stockslist = ["AAPL", "MSFT", "TSLA", "FB", "BABA", "UBER", "DIS", "SBUX"];
+        
         let promises = [];
         stockslist.map((stock) => {
             promises.push(
@@ -33,11 +35,15 @@ function Stats() {
                 })
             )
         });
+        
 
         Promise.all(promises).then(() => {
             setStockData(testData);
         })
     }, [])
+
+    console.log(stockData);
+    console.log(testData);
 
     return (
         <div className="stats">
@@ -47,7 +53,7 @@ function Stats() {
                 </div>
                 <div className="stats__content">
                     <div className="stats_rows">
-                        {stockData.map((stock) => (
+                        {/* {stockData.map((stock) => (
                             <StatsRow
                                 key={stock.data.ticker}
                                 name={stock.data.ticker}
@@ -55,11 +61,23 @@ function Stats() {
                                 volume={stock.data.share}
                                 price={stock.info.c}
                             />
-                        ))}
+                        ))} */}
                     </div>
                 </div>
                 <div className="stats__header">
                     <p>Lists</p>
+                </div>
+                <div className="stats__content">
+                    <div className="stats__rows">
+                        {stockData.map((stock) => (
+                        <StatsRow
+                            key={stock.name}
+                            name={stock.name}
+                            openPrice={stock.o}
+                            price={stock.c}
+                        />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
