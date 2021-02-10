@@ -39,5 +39,5 @@
 }
 
 .row__percentage-negative {
-  color: red !important;
+  color: rgba(255, 80, 0) !important;
 }

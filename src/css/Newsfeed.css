@@ -66,8 +66,7 @@
 }
 
 .newsfeed__popularlists__intro > p {
-  font-weight: bold;
-  color: orange;
+  color: rgba(255, 80, 0);
 }
 
 .newsfeed_popularlists_badges {
