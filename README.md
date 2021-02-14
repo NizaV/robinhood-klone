@@ -10,7 +10,7 @@
 A front-end react application integrated with an API :computer:. The API and Axios allows for access to a Finnhub exhibiting realtime stock data. The design of this app is detailed to enhance user-experience. More features to come :raised_hands:
 
 ## Check it out!
-👉 TBA :rocket:
+👉 https://robinhood-klone-nv.web.app :rocket:
 
 ## For Developers
 
